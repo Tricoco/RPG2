@@ -27,24 +27,27 @@ void AItem::BeginPlay()
 
 }
 
+float AItem::TransformedCos()
+{
+	return Amplitude * FMath::Cos(RunningTime * TimeConstant);
+}
+
+float AItem::TransformedSin()
+{
+	return Amplitude* FMath::Sin(RunningTime * TimeConstant);
+}
+
 //AddOnScreenDebugMessage 输出fstring 
 //通过调用 TEXT构造fstring ，可输入额外参数
 void AItem::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
 
-	
-
-	//MovementRate * DeltaTIme (cm/s)*(s/frame)=(cm/frame)
-
 	RunningTime += DeltaTime;
-	float DeltaZ = Amplitude * FMath::Sin(RunningTime * TimeConstant);
-
-	AddActorWorldOffset(FVector(0.f, 0.f, DeltaZ));
+	//float DeltaZ = Amplitude * FMath::Sin(RunningTime * TimeConstant);
+	//AddActorWorldOffset(FVector(0.f, 0.f, DeltaZ));
 
 	DRAW_SPHERE_SingleFrame(GetActorLocation());
 	DRAW_VECTOR_SingleFrame(GetActorLocation(),GetActorLocation() + GetActorForwardVector() * 100)
-
-
 }
 
