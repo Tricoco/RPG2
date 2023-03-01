@@ -27,7 +27,11 @@ void Abird::BeginPlay()
 
 void Abird::MoveForward(float value)
 {
-	UE_LOG(LogTemp, Warning, TEXT("value:%f"), value);
+	if (Controller  && (value != 0.f))
+	{
+		FVector Forward = GetActorForwardVector();
+		AddMovementInput(Forward,value);
+	}
 }
 
 void Abird::Tick(float DeltaTime)
