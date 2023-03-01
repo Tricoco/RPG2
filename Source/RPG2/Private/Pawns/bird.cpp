@@ -27,7 +27,7 @@ void Abird::BeginPlay()
 
 void Abird::MoveForward(float value)
 {
-
+	UE_LOG(LogTemp, Warning, TEXT("value:%f"), value);
 }
 
 void Abird::Tick(float DeltaTime)
@@ -39,7 +39,8 @@ void Abird::Tick(float DeltaTime)
 void Abird::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
-
+	//与UE编辑器中项目设置 输入 轴映射配合
+	PlayerInputComponent->BindAxis(FName("MoveForward"),this,&Abird::MoveForward);
 
 }
 
