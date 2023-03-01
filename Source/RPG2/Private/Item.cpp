@@ -10,21 +10,20 @@ AItem::AItem()
 {
  	// Set this actor to call Tick() every frame.  You can turn this off to improve performance if you don't need it.
 	PrimaryActorTick.bCanEverTick = true;
+
+	ItemMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ItemMeshComponent"));
+	RootComponent = ItemMesh;
 }
 
 void AItem::BeginPlay()
 {
 	Super::BeginPlay();
-	UE_LOG(LogTemp, Warning, TEXT("Begin Play called!"));
 
-	if (GEngine)
-	{
-		GEngine->AddOnScreenDebugMessage(1, 60.f, FColor::Cyan, FString("Item OnScreen Message!"));
-	}
+	int32 AvgInt= Avg<int32>(1, 3);
+	UE_LOG(LogTemp, Warning, TEXT("Avg of 1 and 3:%d"), AvgInt);
 
-
-	
-
+	float Avgfloat = Avg<float>(1.1f, 3.3f);
+	UE_LOG(LogTemp, Warning, TEXT("Avg of 1 and 3:%f"), Avgfloat);
 }
 
 float AItem::TransformedCos()
@@ -44,10 +43,6 @@ void AItem::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	RunningTime += DeltaTime;
-	//float DeltaZ = Amplitude * FMath::Sin(RunningTime * TimeConstant);
-	//AddActorWorldOffset(FVector(0.f, 0.f, DeltaZ));
 
-	DRAW_SPHERE_SingleFrame(GetActorLocation());
-	DRAW_VECTOR_SingleFrame(GetActorLocation(),GetActorLocation() + GetActorForwardVector() * 100)
 }
 
