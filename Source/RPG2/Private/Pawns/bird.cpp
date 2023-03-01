@@ -44,6 +44,22 @@ void Abird::MoveForward(float value)
 	}
 }
 
+void Abird::Turn(float value)
+{
+	if (Controller && (value != 0.f))
+	{
+		AddControllerYawInput(value);
+	}
+}
+
+void Abird::LookUp(float value)
+{
+	if (Controller && (value != 0.f))
+	{
+		AddControllerPitchInput(value);
+	}
+}
+
 void Abird::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -55,6 +71,7 @@ void Abird::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	Super::SetupPlayerInputComponent(PlayerInputComponent);
 	//与UE编辑器中项目设置 输入 轴映射配合
 	PlayerInputComponent->BindAxis(FName("MoveForward"),this,&Abird::MoveForward);
-
+	PlayerInputComponent->BindAxis(FName("LookUp"), this, &Abird::LookUp);
+	PlayerInputComponent->BindAxis(FName("Turn"), this, &Abird::Turn);
 }
 
