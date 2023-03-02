@@ -4,6 +4,7 @@
 #include "characters/SlashCharacter.h"
 #include "GameFramework/SpringArmComponent.h"
 #include "Camera/CameraComponent.h"
+#include "GameFramework/CharacterMovementComponent.h"
 
 ASlashCharacter::ASlashCharacter()
 {
@@ -12,6 +13,11 @@ ASlashCharacter::ASlashCharacter()
 	bUseControllerRotationPitch = false;
 	bUseControllerRotationYaw = false;
 	bUseControllerRotationRoll = false;
+
+
+	GetCharacterMovement()->bOrientRotationToMovement = true;
+	GetCharacterMovement()->RotationRate = FRotator(0.f, 400.f, 0.f);
+
 
 	SpringArm = CreateDefaultSubobject<USpringArmComponent>(TEXT("SpringArm"));
 	SpringArm->SetupAttachment(GetRootComponent());
@@ -31,8 +37,14 @@ void ASlashCharacter::MoveForward(float value)
 {
 	if (Controller && (value != 0.f))
 	{
-		FVector Forward = GetActorForwardVector();
-		AddMovementInput(Forward, value);
+		//获取控制器方向（摄像头绑定控制器时，就是摄像头方向
+		const FRotator ContorlRotation = GetControlRotation();
+		//只关心偏航角
+		const FRotator YawRotator(0.f, ContorlRotation.Yaw, 0.f);
+		//matrix=ymat*pmat*rmat )?
+		const FVector direction= FRotationMatrix(YawRotator).GetUnitAxis(EAxis::X);
+		//将旋转变换应用于X轴上
+		AddMovementInput(direction, value);
 	}
 }
 
@@ -40,8 +52,11 @@ void ASlashCharacter::MoveRight(float value)
 {
 	if (Controller && (value != 0.f))
 	{
-		FVector Right = GetActorRightVector();
-		AddMovementInput(Right, value);
+
+		const FRotator ContorlRotation = GetControlRotation();
+		const FRotator YawRotator(0.f, ContorlRotation.Yaw, 0.f);
+		const FVector direction = FRotationMatrix(YawRotator).GetUnitAxis(EAxis::Y);
+		AddMovementInput(direction, value);
 	}
 }
 
