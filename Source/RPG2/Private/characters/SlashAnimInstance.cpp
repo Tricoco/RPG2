@@ -25,6 +25,7 @@ void USlashAnimInstance::NativeUpdateAnimation(float DelatTime)
 	{
 	
 		GroundSpeed = UKismetMathLibrary::VSizeXY(SlashCharacterMovement->Velocity);
-		UE_LOG(LogTemp, Warning, TEXT("GroundSpeed:%f"), GroundSpeed);
+		IsFalling = SlashCharacterMovement->IsFalling();
+
 	}
 }
