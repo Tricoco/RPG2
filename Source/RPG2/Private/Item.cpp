@@ -4,7 +4,7 @@
 #include "Item.h"
 #include"DrawDebugHelpers.h"
 #include"RPG2/DebugMacros.h"
-
+#include "Components/SphereComponent.h"
 
 AItem::AItem()
 {
@@ -13,22 +13,31 @@ AItem::AItem()
 
 	ItemMesh = CreateDefaultSubobject<UStaticMeshComponent>(TEXT("ItemMeshComponent"));
 	RootComponent = ItemMesh;
+
+	Sphere = CreateDefaultSubobject<USphereComponent>(TEXT("SphereComponent"));
+	Sphere->SetupAttachment(GetRootComponent());
+
 }
 
 void AItem::BeginPlay()
 {
 	Super::BeginPlay();
-
-	int32 AvgInt= Avg<int32>(1, 3);
-	UE_LOG(LogTemp, Warning, TEXT("Avg of 1 and 3:%d"), AvgInt);
-
-	float Avgfloat = Avg<float>(1.1f, 3.3f);
-	UE_LOG(LogTemp, Warning, TEXT("Avg of 1 and 3:%f"), Avgfloat);
+	//委托
+	Sphere->OnComponentBeginOverlap.AddDynamic(this, &AItem::OnSphereOverlap);
 }
 
 float AItem::TransformedCos()
 {
 	return Amplitude * FMath::Cos(RunningTime * TimeConstant);
+}
+
+void AItem::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex, bool bFromSweep, const FHitResult& SweepResult)
+{
+	const FString OtherActorName = OtherActor->GetName();
+	if (GEngine)
+	{
+		GEngine->AddOnScreenDebugMessage(1, 30.f, FColor::Red, OtherActorName);
+	}
 }
 
 float AItem::TransformedSin()
