@@ -8,7 +8,7 @@
 
 class USpringArmComponent;
 class	UCameraComponent;
-
+class AItem;
 
 UCLASS()
 class RPG2_API ASlashCharacter : public ACharacter
@@ -27,10 +27,17 @@ protected:
 	void MoveRight(float value);
 	void Turn(float value);
 	void LookUp(float value);
+
+	void EKeyPressed();
 private:
 	UPROPERTY(VisibleAnywhere)
 	USpringArmComponent* SpringArm;
 
 	UPROPERTY(VisibleAnywhere)
 	UCameraComponent* ViewCamera;
+
+	AItem* OverlappingItem;
+public:
+	FORCEINLINE void SetOverlappingItem(AItem* Item) { OverlappingItem = Item; }
+	FORCEINLINE AItem* SetOverlappingItem() { return OverlappingItem; }
 };

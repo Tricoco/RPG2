@@ -3894,3 +3894,26 @@ Content/Megascans/3D_Assets/Sandstone_Boulder_vmjedba/T_Sandstone_Boulder_vmjedb
 Content/Megascans/3D_Assets/Sandstone_Boulder_vmjedba/T_SandstoneBoulder_vmjedba_2K_DpR.uasset
 Content/Blueprints/Characters/ABP_MYGideon.uasset
 Content/Blueprints/Characters/ABP_MYGideon.uasset
+Asssets/mixamo/Animations/Standing Idle.fbx
+Asssets/mixamo/Animations/Standing Melee Attack Horizontal.fbx
+Asssets/mixamo/X Bot.fbx
+Content/__ExternalActors__/Maps/SlashMap/A/I5/TTDQQ5RGZQETO3V3O5OK96.uasset
+Content/__ExternalActors__/Maps/SlashMap/C/5K/D5QH3FLSG8X807GR086UFN.uasset
+Content/Blueprints/Characters/Animations/Standing_Idle_Retargeted.uasset
+Content/Blueprints/Characters/Animations/Standing_Melee_Attack_Horizontal_Retargeted.uasset
+Content/Blueprints/Characters/Rigs/IK_Gioden.uasset
+Content/Blueprints/Items/Weapon/BP_Weapon.uasset
+Content/Megascans/3D_Assets/Sword_uitlbiaga/MI_Sword_uitlbiaga_2K.uasset
+Content/Megascans/3D_Assets/Sword_uitlbiaga/S_Sword_uitlbiaga_lod3_Var1.uasset
+Content/Megascans/3D_Assets/Sword_uitlbiaga/T_Sword_uitlbiaga_2K_D.uasset
+Content/Megascans/3D_Assets/Sword_uitlbiaga/T_Sword_uitlbiaga_2K_DpR.uasset
+Content/Megascans/3D_Assets/Sword_uitlbiaga/T_Sword_uitlbiaga_2K_N.uasset
+Content/MIxamo/Xbot/Animations/Standing_Idle.uasset
+Content/MIxamo/Xbot/Animations/Standing_Melee_Attack_Horizontal.uasset
+Content/MIxamo/Xbot/Material/Beta_HighLimbsGeoSG3.uasset
+Content/MIxamo/Xbot/Material/Beta_Joints_MAT1.uasset
+Content/MIxamo/Xbot/Rigs/IK_Xbot.uasset
+Content/MIxamo/Xbot/Rigs/RTG_Xbot.uasset
+Content/MIxamo/Xbot/SK_Xbot.uasset
+Content/MIxamo/Xbot/SKM_XBot.uasset
+Content/MIxamo/Xbot/X_Bot_PhysicsAsset.uasset

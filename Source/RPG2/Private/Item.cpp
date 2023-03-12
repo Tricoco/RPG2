@@ -22,8 +22,10 @@ AItem::AItem()
 void AItem::BeginPlay()
 {
 	Super::BeginPlay();
-	//委托
+	//委托(在资源管理器搜索primitivecomponent，搜索oncomponent，查询多个委托函数
 	Sphere->OnComponentBeginOverlap.AddDynamic(this, &AItem::OnSphereOverlap);
+
+	Sphere->OnComponentEndOverlap.AddDynamic(this, &AItem::OnSphereEndOverlap);
 }
 
 float AItem::TransformedCos()
@@ -37,6 +39,15 @@ void AItem::OnSphereOverlap(UPrimitiveComponent* OverlappedComponent, AActor* Ot
 	if (GEngine)
 	{
 		GEngine->AddOnScreenDebugMessage(1, 30.f, FColor::Red, OtherActorName);
+	}
+}
+
+void AItem::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
+{
+	const FString OtherActorName = OtherActor->GetName();
+	if (GEngine)
+	{
+		GEngine->AddOnScreenDebugMessage(1, 30.f, FColor::Blue, OtherActorName);
 	}
 }
 
@@ -55,7 +66,7 @@ void AItem::Tick(float DeltaTime)
 	float RotationRate = 30.f;
 	//RotationRate*deltatime =(degree/s)*(s/frame)=(degree/frame)
 
-	AddActorWorldRotation(FRotator(0.f, 0.f, RotationRate * DeltaTime));
+	//AddActorWorldRotation(FRotator(0.f, 0.f, RotationRate * DeltaTime));
 
 }
 
